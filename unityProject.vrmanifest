@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.overlappingroom.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Student Projects\\OverlapingRooms-feature-overlap-fix\\OverlapingRooms-feature-overlap-fix\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "OverlappingRoom [Testing]"
+        }
+      }
+    }
+  ]
+}
