@@ -6,9 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/75_percent/75_no_distraction.unity
-    guid: f58d70b5c78309647a6601b758373feb
+    path: Assets/Scenes/0_percent/0_distraction.unity
+    guid: cc8a0488e894d3c43851f4ee54341086
   - enabled: 1
-    path: Assets/Scenes/60_percent/60_no_distraction.unity
-    guid: f065c5d3df1629c4186012cfa3a79a5e
+    path: Assets/Scenes/15_percent/15_distraction.unity
+    guid: 833298b40c866c945b6e1af96bdb5064
+  - enabled: 1
+    path: Assets/Scenes/30_percent/30_distraction.unity
+    guid: 737f0dc845da63140a3e684073dd4b54
+  - enabled: 1
+    path: Assets/Scenes/45_percent/45_distraction.unity
+    guid: 9c856759715292d4a946b99937a9962c
+  - enabled: 1
+    path: Assets/Scenes/60_percent/60_distraction.unity
+    guid: 6b40ee95da51b7341b0ff3a83af2590a
+  - enabled: 1
+    path: Assets/Scenes/75_percent/75_distraction.unity
+    guid: 18e26033f90046f44b0804de62c7026e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -1538,6 +1538,7 @@ namespace Valve.VR
 
         private static bool checkingSetup = false;
         private static bool openingSetup = false;
+
         public static bool IsOpeningSetup() { return openingSetup; }
         private static void CheckSetup()
         {
