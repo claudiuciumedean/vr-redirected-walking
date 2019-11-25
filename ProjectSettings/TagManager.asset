@@ -17,6 +17,10 @@ TagManager:
   - Controller
   - FxTemporaire
   - overlap-0
+  - Ready
+  - No
+  - Yes
+  - Message
   layers:
   - Default
   - TransparentFX
