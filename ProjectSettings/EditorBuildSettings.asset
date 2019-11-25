@@ -23,10 +23,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/75_percent/75_distraction.unity
     guid: 18e26033f90046f44b0804de62c7026e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/0_percent/0_no_distraction.unity
+    guid: d9a37f1c0d183b9409e6f6e8a0eb2ae5
+  - enabled: 1
+    path: Assets/Scenes/15_percent/15_no_distraction.unity
+    guid: 5cc1ddb61d1922549a8b60d7ed84e8fa
+  - enabled: 1
+    path: Assets/Scenes/30_percent/30_no_distraction.unity
+    guid: 39c81c0d4fc14c248aa0934451442b7d
+  - enabled: 1
+    path: Assets/Scenes/45_percent/45_no_distraction.unity
+    guid: d20c6276a81af244eb0c11a1d1b9064c
+  - enabled: 1
+    path: Assets/Scenes/60_percent/60_no_distraction.unity
+    guid: aaf78c0d8b4338948bb7bcba6d68692a
+  - enabled: 1
+    path: Assets/Scenes/75_percent/75_no_distraction.unity
+    guid: 2301e4c7fc68767448b80a96ec410fac
+  - enabled: 1
+    path: Assets/Scenes/Loading/Start.unity
+    guid: a4cbd15a95f6ab14f815056d3d42816d
   m_configObjects: {}

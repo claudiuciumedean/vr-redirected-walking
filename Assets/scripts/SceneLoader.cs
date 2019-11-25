@@ -4,32 +4,64 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Valve.VR;
 
-
-
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : Singleton<SceneLoader>
 {
+    public GameObject player;
     List<int> distractionScenes = new List<int> { 0, 1, 2, 3, 4, 5 };
     List<int> noDistractionScenes = new List<int> { 6, 7, 8, 9, 10, 11 };
     int count = 0;
+    bool displayDistractions = false;
+    bool isRandomized = false;
 
     private void Start()
     {
-        Randomizer.Shuffle(noDistractionScenes);
-        Randomizer.Shuffle(distractionScenes);
+        if (!isRandomized)
+        {
+            Randomizer.Shuffle(noDistractionScenes);
+            Randomizer.Shuffle(distractionScenes);
+            isRandomized = true;
+        }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void Awake()
     {
+        DontDestroyOnLoad(player);
+    }
 
-        if (other.gameObject.tag == "Controller" && count < distractionScenes.Count)
+    public void setDistractions(bool displayDistractions)
+    {
+        this.displayDistractions = displayDistractions;
+    }
+
+    public void loadFirstScene()
+    {
+        if (this.displayDistractions)
         {
-            SceneManager.LoadScene(distractionScenes[count]);
-            count++;
+            SceneManager.LoadScene(0);
         }
+        else
+        {
+            SceneManager.LoadScene(noDistractionScenes[count]);
+        }
+
+        count++;
+    }
+
+    public void loadScene()
+    {
+        //if (count >= distractionScenes.Count) { return; }
+        Debug.Log("asfa");
+        //SteamVR_LoadLevel tempload = player.GetComponent<SteamVR_LoadLevel>();
+        //tempload.fadeOutTime = 1f;
+        //tempload.fadeInTime = 1f;
+        //tempload.Trigger();
+
+        //SceneManager.LoadScene(distractionScenes[count]);
+        //count++;
     }
 }
 
-// Shuffle any (I)List with an extension method based on
+// Shuffle any list with an extension method based on
 // the Fisher-Yates shuffle https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 public static class Randomizer
 {
