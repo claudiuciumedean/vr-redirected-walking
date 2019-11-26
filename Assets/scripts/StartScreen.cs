@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class StartScreen : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class StartScreen : MonoBehaviour
     bool enter = false;
     int answer;
 
+    private String myPath;
+
+    
+    void Start(){
+        myPath = Application.persistentDataPath + "/testFile.txt";
+    }
 
     private void Update()
     {   
@@ -49,8 +56,6 @@ public class StartScreen : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
-        timeLeft = timeThreshold;
         enter = false;
         text.color = Color.white;
     }
