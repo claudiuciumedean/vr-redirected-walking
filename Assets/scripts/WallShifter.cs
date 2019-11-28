@@ -23,8 +23,10 @@ public class WallShifter: MonoBehaviour {
     void Start() {
         animatedCellA = cellA.GetComponent<Animation>();
         animatedCellB = cellB.GetComponent<Animation>();
-        //animatedCellA.Play("Open");
-        isCamera = camera.tag ==  "Player" ? "No" : "Yes";
+        animatedCellA.Play("Open");
+        PersistenceMangager.Instance.overlap = wall.tag;
+        PersistenceMangager.Instance.isDistraction = camera.tag ==  "Player" ? "No" : "Yes";
+        SceneManager.LoadScene(13);
     }
 
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class StartScreen : MonoBehaviour
@@ -12,19 +13,17 @@ public class StartScreen : MonoBehaviour
     float timeLeft;
     bool enter = false;
     string answer;
-
-    string id;
-    string overlap;
-    string isDistraction;
-
     
     void Start(){
-
+        //Debug.Log(PersistenceMangager.Instance.id);
+        //Debug.Log(PersistenceMangager.Instance.overlap);
+        //Debug.Log(PersistenceMangager.Instance.isDistraction);
+        
     }
 
     private void Update()
-    {   Debug.Log(id + " "  + overlap + " " + isDistraction);
-
+    {   
+        SceneManager.LoadScene(0);
         // on controller enter - start countdown
         if(enter)
         {
@@ -42,8 +41,7 @@ public class StartScreen : MonoBehaviour
                 {
                     
                     answer = thisObject.tag == "Yes" ? "Yes" : "No"; // pass over the answer to the log, Yes = 1; No = 0
-                    //log(thisId,);
-                    // go to next scene from here
+                    log(PersistenceMangager.Instance.id, PersistenceMangager.Instance.overlap, PersistenceMangager.Instance.isDistraction, answer);
                 }
             }
         }
@@ -63,11 +61,6 @@ public class StartScreen : MonoBehaviour
         text.color = Color.white;
     }
 
-    public static void sendData(StartScreen start, string id, string overlap, string isDistraction){
-        start.id = id;
-        start.overlap = overlap;
-        start.isDistraction = isDistraction;
-        }
 
     void log(int id, string overlapLevel, string distractor, string possible) {
         CSVManager.AppendToReport(new string[] { id.ToString(), overlapLevel, distractor, possible });
