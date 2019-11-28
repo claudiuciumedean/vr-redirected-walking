@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+
 
 public class StartScreen : MonoBehaviour
 {
@@ -11,17 +11,20 @@ public class StartScreen : MonoBehaviour
     public GameObject thisObject;
     float timeLeft;
     bool enter = false;
-    int answer;
+    string answer;
 
-    private String myPath;
+    string id;
+    string overlap;
+    string isDistraction;
 
     
     void Start(){
-        myPath = Application.persistentDataPath + "/testFile.txt";
+
     }
 
     private void Update()
-    {   
+    {   Debug.Log(id + " "  + overlap + " " + isDistraction);
+
         // on controller enter - start countdown
         if(enter)
         {
@@ -38,8 +41,8 @@ public class StartScreen : MonoBehaviour
                 else // when not in start scene
                 {
                     
-                    answer = thisObject.tag == "Yes" ? 1 : 0; // pass over the answer to the log, Yes = 1; No = 0
-                    Debug.Log(answer);
+                    answer = thisObject.tag == "Yes" ? "Yes" : "No"; // pass over the answer to the log, Yes = 1; No = 0
+                    //log(thisId,);
                     // go to next scene from here
                 }
             }
@@ -59,5 +62,16 @@ public class StartScreen : MonoBehaviour
         enter = false;
         text.color = Color.white;
     }
+
+    public static void sendData(StartScreen start, string id, string overlap, string isDistraction){
+        start.id = id;
+        start.overlap = overlap;
+        start.isDistraction = isDistraction;
+        }
+
+    void log(int id, string overlapLevel, string distractor, string possible) {
+        CSVManager.AppendToReport(new string[] { id.ToString(), overlapLevel, distractor, possible });
+    }
+
 
 }

@@ -3336,7 +3336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef44db09b7882964a8009794b9ec1fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 994658076}
+  camera: {fileID: 167745089}
   wall: {fileID: 564437247}
   coverWallA: {fileID: 1197559487}
   coverWallB: {fileID: 652997715}

@@ -16,7 +16,7 @@ public class cameraRotation : MonoBehaviour
     }
 
     void Update() {
-
+        
         // Calculate the phase of the animation
         phase= (Time.time - delay) % animLength / animLength;
         
@@ -46,17 +46,23 @@ public class cameraRotation : MonoBehaviour
             
         }
 
-        soundManager(play);
+        soundManager(play, cameraSound.isPlaying);
     }
 
-    void soundManager(bool check){
+    void soundManager(bool check, bool isPlaying){
 
-        if(check){
+        
+
+        if(check == true && isPlaying == false){
             cameraSound.Play(0);
             play = false;
         }
+        else if(check == true && isPlaying == true){
+            // do nothing
+        }
         else {
             cameraSound.Stop();
+            play = false;
         }
     }
 }

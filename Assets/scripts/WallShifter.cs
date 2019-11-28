@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WallShifter: MonoBehaviour {
     public GameObject camera;
@@ -7,6 +8,7 @@ public class WallShifter: MonoBehaviour {
     public GameObject coverWallB;
     public GameObject cellA;
     public GameObject cellB;
+    
 
     Animation animatedCellA;
     Animation animatedCellB;
@@ -14,12 +16,18 @@ public class WallShifter: MonoBehaviour {
     float playerPositionX;
     float playerPositionZ;
     bool isDoorOpen = false;
-
+    string isCamera;
+    SceneManager load = new SceneManager();
+    
+    string[] firstLine = new string[] {"first", "second", "third", "fourth"};
     void Start() {
         animatedCellA = cellA.GetComponent<Animation>();
         animatedCellB = cellB.GetComponent<Animation>();
-        animatedCellA.Play("Open");
+        //animatedCellA.Play("Open");
+        isCamera = camera.tag ==  "Player" ? "No" : "Yes";
     }
+
+
 
     void Update() {
         playerPositionX = camera.transform.position.x;
