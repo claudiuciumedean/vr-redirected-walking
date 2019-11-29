@@ -11,14 +11,14 @@ public class SceneLoader : Singleton<SceneLoader>
     List<int> noDistractionScenes = new List<int> { 6, 7, 8, 9, 10, 11 };
     bool isRandomized = false;
     int count;
-
     public int playerId = 0;
     string overlapLevel;
     string questionAnswer;
     bool hasDistraction = false;
     bool hasStartedFirstTrial = false;
+    public Hashtable digitObjects = new Hashtable();
+    public int sceneId;
 
-    Hashtable digitObjects = new Hashtable();
 
     private void Start()
     {
@@ -31,6 +31,11 @@ public class SceneLoader : Singleton<SceneLoader>
 
         CSVManager.setFileName(playerId);
         appendDigitObject();
+    }
+
+    public void loadLoadingScreen()
+    {
+        SceneManager.LoadScene(13); //scene 13 is Load scene
     }
 
     public void loadFirstScene()
@@ -53,12 +58,8 @@ public class SceneLoader : Singleton<SceneLoader>
         }
 
         SceneManager.LoadScene(this.hasDistraction ? distractionScenes[count] : noDistractionScenes[count]);
+        sceneId = distractionScenes[count];
         count++;
-    }
-
-    public void loadLoadingScreen()
-    {
-        SceneManager.LoadScene(13); //scene 13 is Load scene
     }
 
     public void loadScene()
@@ -80,13 +81,18 @@ public class SceneLoader : Singleton<SceneLoader>
             SceneManager.LoadScene(noDistractionScenes[count]);
         }
 
+        sceneId = distractionScenes[count];
         count++;
     }
 
     public bool isLastScene()
     {
-        return true;
-        //return count >= distractionScenes.Count;
+        return count === distractionScenes.Count - 1;
+    }
+
+    public int getSceneId()
+    {
+        return sceneId;
     }
 
     public void setQuestionAnswer(string answer)

@@ -22,8 +22,30 @@ public class ObjectManager : MonoBehaviour
 
     void Start()
     {
+        isLastScene = SceneLoader.Instance.isLastScene();
 
-        if(!SceneLoader.Instance.getDigitObject("pillow"))
+        displayKeypad();
+
+        Debug.Log(SceneLoader.Instance.getSceneId() + "sceneid");
+        if (this.isLastScene || SceneLoader.Instance.getSceneId() % 2 == 0) {
+            appendDigitObjects();
+        }
+    }
+
+    void displayKeypad()
+    {
+        if (!this.isLastScene) { return; }
+
+        buttonA.SetActive(false);
+        buttonB.SetActive(false);
+        keypad.SetActive(true);
+    }
+
+    void appendDigitObjects()
+    {
+        if (SceneLoader.Instance.digitObjects == null) { return; }
+
+        if (!SceneLoader.Instance.getDigitObject("pillow"))
         {
             digitObjects.Add(pillowA);
             digitObjects.Add(pillowB);
@@ -34,7 +56,7 @@ public class ObjectManager : MonoBehaviour
             digitObjects.Add(notebookA);
             digitObjects.Add(notebookB);
         }
- 
+
         if (!SceneLoader.Instance.getDigitObject("box"))
         {
             digitObjects.Add(boxA);
@@ -47,19 +69,7 @@ public class ObjectManager : MonoBehaviour
             digitObjects.Add(dishB);
         }
 
-        isLastScene = SceneLoader.Instance.isLastScene();
-
-        displayKeypad();
         displayDigitObject();
-    }
-
-    void displayKeypad()
-    {
-        if (!this.isLastScene) { return; }
-
-        buttonA.SetActive(false);
-        buttonB.SetActive(false);
-        keypad.SetActive(true);
     }
 
     void displayDigitObject()
@@ -67,12 +77,15 @@ public class ObjectManager : MonoBehaviour
         if(digitObjects.Count == 0) { return; }
 
         int i = UnityEngine.Random.Range(0, digitObjects.Count - 1);
+        Debug.Log(digitObjects.Count + "arr");
         GameObject digitObject = digitObjects[i];
         string tagName = digitObject.tag;
-        GameObject sibling = digitObjects.Find(obj => obj.tag == tagName);
 
         digitObject.SetActive(true);
         digitObjects.RemoveAt(i);
+
+        GameObject sibling = digitObjects.Find(obj => obj.tag == tagName);
+
         digitObjects.RemoveAt(digitObjects.IndexOf(sibling));
         SceneLoader.Instance.setDigitObject(tagName, true);
     }
