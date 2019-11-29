@@ -9,50 +9,37 @@ public class StartScreen : MonoBehaviour
 {
     public float timeThreshold;
     public TextMesh text;
-    public GameObject thisObject;
+    public GameObject messageObject;
     float timeLeft;
     bool enter = false;
     string answer;
-    
-    void Start(){
-        //Debug.Log(PersistenceMangager.Instance.id);
-        //Debug.Log(PersistenceMangager.Instance.overlap);
-        //Debug.Log(PersistenceMangager.Instance.isDistraction);
-        
-    }
 
     private void Update()
-    {   
-        SceneManager.LoadScene(0);
-        // on controller enter - start countdown
-        if(enter)
+    {
+        if(!enter) { return; }
+
+        timeLeft -= Time.deltaTime;
+  
+        if (timeLeft < 0)
         {
-            timeLeft -= Time.deltaTime;
-            if (timeLeft < 0)
+            if (messageObject.tag == "Message") // when in start scene
             {
-
-                if (thisObject.tag == "Message") // when in start scene
-                {
-                    SceneLoader.Instance.setDistractions(true);
-                    SceneLoader.Instance.loadFirstScene();
-                }
-
-                else // when not in start scene
-                {
-                    
-                    answer = thisObject.tag == "Yes" ? "Yes" : "No"; // pass over the answer to the log, Yes = 1; No = 0
-                    log(PersistenceMangager.Instance.id, PersistenceMangager.Instance.overlap, PersistenceMangager.Instance.isDistraction, answer);
-                }
+                SceneLoader.Instance.loadFirstScene();
+                return;
             }
+
+            SceneLoader.Instance.setQuestionAnswer(messageObject.tag == "Yes" ? "Yes" : "No"); // pass over the answer to the scene loader, Yes = 1; No = 0
+            SceneLoader.Instance.saveLog();
+            SceneLoader.Instance.loadScene();
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         
         timeLeft = timeThreshold;
         enter = true;
         text.color = Color.red;
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -60,11 +47,4 @@ public class StartScreen : MonoBehaviour
         enter = false;
         text.color = Color.white;
     }
-
-
-    void log(int id, string overlapLevel, string distractor, string possible) {
-        CSVManager.AppendToReport(new string[] { id.ToString(), overlapLevel, distractor, possible });
-    }
-
-
 }

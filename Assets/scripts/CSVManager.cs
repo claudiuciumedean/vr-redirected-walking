@@ -8,9 +8,13 @@ public static class CSVManager
     private static string reportDirectoryName = Directory.GetCurrentDirectory();
     private static string reportFileName = "Report";
     private static string fileFormat = ".csv";
-    public static int fileID = 0;
     private static string reportSeparator = ",";
     private static string[] reportHeaders = new string[4] { "ID", "Overlap level", "Distractor (yes/no)", "Possible (yes/no)" };
+
+    public static void setFileName(int id)
+    {
+        CSVManager.reportFileName = reportFileName + "_" + id;
+    }
 
     #region Interactions
     public static void AppendToReport(string[] strings) {
@@ -24,8 +28,8 @@ public static class CSVManager
                 }
                 finalString += strings[i];
             }
-            sw.WriteLine(finalString);
 
+            sw.WriteLine(finalString);
         }
     }
 
@@ -53,7 +57,6 @@ public static class CSVManager
         if (!Directory.Exists(dir)) {
             Directory.CreateDirectory(dir);
         }
-
     }
 
     static void VerifyFile() {
@@ -62,7 +65,6 @@ public static class CSVManager
         {
             CreateReport();
         }
-        fileID++;
         
     }
 
@@ -74,7 +76,7 @@ public static class CSVManager
     }
 
     static string GetFilePath() {
-        return GetDirectoryPath() + "/Reports/" + reportFileName + fileID.ToString() + fileFormat;
+        return GetDirectoryPath() + "/Reports/" + reportFileName + fileFormat;
     }
     #endregion
 }

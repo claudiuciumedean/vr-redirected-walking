@@ -21,6 +21,11 @@ TagManager:
   - No
   - Yes
   - Message
+  - keypad
+  - pillow
+  - dish
+  - box
+  - notebook
   layers:
   - Default
   - TransparentFX

@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class WallShifter: MonoBehaviour {
+public class WallShifter : MonoBehaviour
+{
     public GameObject camera;
     public GameObject wall;
     public GameObject coverWallA;
     public GameObject coverWallB;
     public GameObject cellA;
     public GameObject cellB;
-    
 
     Animation animatedCellA;
     Animation animatedCellB;
@@ -16,28 +15,25 @@ public class WallShifter: MonoBehaviour {
     float playerPositionX;
     float playerPositionZ;
     bool isDoorOpen = false;
-    string isCamera;
-    SceneManager load = new SceneManager();
-    
-    string[] firstLine = new string[] {"first", "second", "third", "fourth"};
-    void Start() {
+
+    void Start()
+    {
+        SceneLoader.Instance.setOverlapLevel(wall.tag);
+
         animatedCellA = cellA.GetComponent<Animation>();
         animatedCellB = cellB.GetComponent<Animation>();
         animatedCellA.Play("Open");
-        PersistenceMangager.Instance.overlap = wall.tag;
-        PersistenceMangager.Instance.isDistraction = camera.tag ==  "Player" ? "No" : "Yes";
-        SceneManager.LoadScene(13);
     }
 
-
-
-    void Update() {
+    void Update()
+    {
         playerPositionX = camera.transform.position.x;
         playerPositionZ = camera.transform.position.z;
         shiftWall();
     }
 
-    void shiftWall() {
+    void shiftWall()
+    {
         if (playerPositionZ > -0.75) { return; }
 
         float overlappingGain = 0;
@@ -86,7 +82,7 @@ public class WallShifter: MonoBehaviour {
         {
             temp = new Vector3(overlappingGain, currentY, currentZ);
             toggle = false;
- 
+
             if (isDoorOpen)
             {
                 isDoorOpen = false;

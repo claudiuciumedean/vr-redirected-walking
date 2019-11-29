@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,12 +7,18 @@ using Valve.VR;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
-    public GameObject player;
     List<int> distractionScenes = new List<int> { 0, 1, 2, 3, 4, 5 };
     List<int> noDistractionScenes = new List<int> { 6, 7, 8, 9, 10, 11 };
-    int count = 0;
-    bool displayDistractions = false;
     bool isRandomized = false;
+    int count;
+
+    public int playerId = 0;
+    string overlapLevel;
+    string questionAnswer;
+    bool hasDistraction = false;
+    bool hasStartedFirstTrial = false;
+
+    Hashtable digitObjects = new Hashtable();
 
     private void Start()
     {
@@ -21,23 +28,52 @@ public class SceneLoader : Singleton<SceneLoader>
             Randomizer.Shuffle(distractionScenes);
             isRandomized = true;
         }
-    }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(player);
-    }
-
-    public void setDistractions(bool displayDistractions)
-    {
-        this.displayDistractions = displayDistractions;
+        CSVManager.setFileName(playerId);
+        appendDigitObject();
     }
 
     public void loadFirstScene()
     {
-        if (this.displayDistractions)
+        count = 0;
+        if (!hasStartedFirstTrial)
         {
-            SceneManager.LoadScene(0);
+            hasDistraction = UnityEngine.Random.Range(0, 1) == 1 ? true : false;
+            hasStartedFirstTrial = true;
+        }
+        else
+        {
+            hasDistraction = hasDistraction ? false : true;
+            // reset the digit object hashtable to false
+            // for the second part of the experiment
+            setDigitObject("pillow", false);
+            setDigitObject("dish", false);
+            setDigitObject("box", false);
+            setDigitObject("notebook", false);
+        }
+
+        SceneManager.LoadScene(this.hasDistraction ? distractionScenes[count] : noDistractionScenes[count]);
+        count++;
+    }
+
+    public void loadLoadingScreen()
+    {
+        SceneManager.LoadScene(13); //scene 13 is Load scene
+    }
+
+    public void loadScene()
+    {
+        Debug.Log(count + "count");
+        Debug.Log(hasDistraction + "hasDistraction");
+
+        if (count == distractionScenes.Count - 1) {
+            SceneManager.LoadScene(12); //scene 12 is start scene
+            return;
+        }
+
+        if (this.hasDistraction)
+        {
+            SceneManager.LoadScene(distractionScenes[count]);
         }
         else
         {
@@ -47,38 +83,44 @@ public class SceneLoader : Singleton<SceneLoader>
         count++;
     }
 
-    public void loadScene()
+    public bool isLastScene()
     {
-        //if (count >= distractionScenes.Count) { return; }
-        Debug.Log("asfa");
-        //SteamVR_LoadLevel tempload = player.GetComponent<SteamVR_LoadLevel>();
-        //tempload.fadeOutTime = 1f;
-        //tempload.fadeInTime = 1f;
-        //tempload.Trigger();
+        return true;
+        //return count >= distractionScenes.Count;
+    }
 
-        //SceneManager.LoadScene(distractionScenes[count]);
-        //count++;
+    public void setQuestionAnswer(string answer)
+    {
+        questionAnswer = answer;
+    }
+
+    public void setOverlapLevel(string overlapLevel)
+    {
+        this.overlapLevel = overlapLevel;
+        Debug.Log(this.overlapLevel);
+    }
+
+    public void appendDigitObject()
+    {
+        digitObjects.Add("pillow", false);
+        digitObjects.Add("dish", false);
+        digitObjects.Add("box", false);
+        digitObjects.Add("notebook", false);
+    }
+
+    public void setDigitObject(string key, bool isDisplayed) {
+        digitObjects[key] = isDisplayed;
+    }
+
+    public bool getDigitObject(string key)
+    {
+        string value = digitObjects["pillow"].ToString();
+        return value == "True" ? true : false;
+    }
+
+    public void saveLog()
+    {
+        string distractor = this.hasDistraction ? "Yes" : "No";
+        CSVManager.AppendToReport(new string[] { this.playerId.ToString(), this.overlapLevel, distractor, this.questionAnswer });
     }
 }
-
-// Shuffle any list with an extension method based on
-// the Fisher-Yates shuffle https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
-public static class Randomizer
-{
-    private static System.Random rng = new System.Random();
-
-    public static void Shuffle<T>(this IList<T> list)
-    {
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-    }
-}
-
-
