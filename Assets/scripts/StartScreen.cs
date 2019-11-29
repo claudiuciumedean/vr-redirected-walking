@@ -13,17 +13,40 @@ public class StartScreen : MonoBehaviour
     float timeLeft;
     bool enter = false;
     string answer;
+    bool switchBlock = false;
+    
+    
+
     
     void Start(){
-        //Debug.Log(PersistenceMangager.Instance.id);
-        //Debug.Log(PersistenceMangager.Instance.overlap);
-        //Debug.Log(PersistenceMangager.Instance.isDistraction);
+        
+        if(!DataHandler.Instance.isRandomized){
+
+        List<int> distractionScenes = new List<int> { 0, 1, 2, 3, 4, 5 };
+        List<int> noDistractionScenes = new List<int> { 6, 7, 8, 9, 10, 11 };
+        Randomizer.Shuffle(distractionScenes);
+        Randomizer.Shuffle(noDistractionScenes);
+        DataHandler.Instance.distractionScenes = distractionScenes;
+        DataHandler.Instance.noDistractionScenes = noDistractionScenes;
+        DataHandler.Instance.isRandomized = true;
+        DataHandler.Instance.listNumber = UnityEngine.Random.Range(0,1);
+
+        }
+
+        else{
+            if (DataHandler.Instance.sceneNumber > 5){
+                DataHandler.Instance.sceneNumber = 0;
+                DataHandler.Instance.listNumber = DataHandler.Instance.listNumber == 1 ? 0 : 1;
+                switchBlock = true;
+                
+            }
+        }
         
     }
 
     private void Update()
     {   
-        SceneManager.LoadScene(0);
+        
         // on controller enter - start countdown
         if(enter)
         {
@@ -33,15 +56,34 @@ public class StartScreen : MonoBehaviour
 
                 if (thisObject.tag == "Message") // when in start scene
                 {
-                    SceneLoader.Instance.setDistractions(true);
-                    SceneLoader.Instance.loadFirstScene();
+                    if(DataHandler.Instance.listNumber == 1 ) {
+                        SceneManager.LoadScene(DataHandler.Instance.distractionScenes[DataHandler.Instance.sceneNumber]);
+                        }
+
+                    else {
+                        SceneManager.LoadScene(DataHandler.Instance.noDistractionScenes[DataHandler.Instance.sceneNumber]);
+                        }
                 }
 
                 else // when not in start scene
                 {
                     
                     answer = thisObject.tag == "Yes" ? "Yes" : "No"; // pass over the answer to the log, Yes = 1; No = 0
-                    log(PersistenceMangager.Instance.id, PersistenceMangager.Instance.overlap, PersistenceMangager.Instance.isDistraction, answer);
+                    log(DataHandler.Instance.id, DataHandler.Instance.overlap, DataHandler.Instance.isDistraction, answer);
+
+                    DataHandler.Instance.sceneNumber++;
+
+                    if(switchBlock) {
+                        SceneManager.LoadScene(12);
+                        }
+
+                    else if(DataHandler.Instance.listNumber == 1) {
+                        SceneManager.LoadScene(DataHandler.Instance.distractionScenes[DataHandler.Instance.sceneNumber]);}
+
+
+                    else {
+                        SceneManager.LoadScene(DataHandler.Instance.noDistractionScenes[DataHandler.Instance.sceneNumber]);
+                        }
                 }
             }
         }
@@ -65,6 +107,8 @@ public class StartScreen : MonoBehaviour
     void log(int id, string overlapLevel, string distractor, string possible) {
         CSVManager.AppendToReport(new string[] { id.ToString(), overlapLevel, distractor, possible });
     }
+
+    
 
 
 }

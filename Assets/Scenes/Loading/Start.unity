@@ -477,7 +477,7 @@ MonoBehaviour:
   timeThreshold: 2
   text: {fileID: 883535050}
   thisObject: {fileID: 883535048}
---- !u!1 &1058056531
+--- !u!1 &967732273
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -485,39 +485,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1058056533}
-  - component: {fileID: 1058056532}
+  - component: {fileID: 967732275}
+  - component: {fileID: 967732274}
   m_Layer: 0
-  m_Name: PersistenceManager
+  m_Name: DataHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1058056532
+--- !u!114 &967732274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058056531}
+  m_GameObject: {fileID: 967732273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aff915448216064c8ba387776c9e668, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b5ca7915b2c1f148a4962be51bff6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   overlap: 
   isDistraction: 
---- !u!4 &1058056533
+  distractionScenes: 
+  noDistractionScenes: 
+--- !u!4 &967732275
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058056531}
+  m_GameObject: {fileID: 967732273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.63814336, y: 0.09280143, z: -2.1137033}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

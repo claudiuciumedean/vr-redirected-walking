@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WallShifter: MonoBehaviour {
     public GameObject camera;
@@ -17,16 +16,15 @@ public class WallShifter: MonoBehaviour {
     float playerPositionZ;
     bool isDoorOpen = false;
     string isCamera;
-    SceneManager load = new SceneManager();
     
     string[] firstLine = new string[] {"first", "second", "third", "fourth"};
     void Start() {
         animatedCellA = cellA.GetComponent<Animation>();
         animatedCellB = cellB.GetComponent<Animation>();
         animatedCellA.Play("Open");
-        PersistenceMangager.Instance.overlap = wall.tag;
-        PersistenceMangager.Instance.isDistraction = camera.tag ==  "Player" ? "No" : "Yes";
-        SceneManager.LoadScene(13);
+        DataHandler.Instance.overlap = wall.tag;
+        DataHandler.Instance.isDistraction = camera.tag ==  "Player" ? "No" : "Yes";
+        
     }
 
 

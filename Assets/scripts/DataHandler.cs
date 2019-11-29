@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersistenceMangager : MonoBehaviour
+public class DataHandler : MonoBehaviour
 {
 
-    public static PersistenceMangager Instance {get; set; }
+    public static DataHandler Instance {get; set; }
     public int id;
     public string overlap;
     public string isDistraction;
+
+    public List<int> distractionScenes;
+    public List<int> noDistractionScenes;
+
+    public bool isRandomized = false;
+    public int listNumber;
+
+    public int sceneNumber;
 
     private void Awake(){
         if (Instance == null){
@@ -21,4 +29,5 @@ public class PersistenceMangager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

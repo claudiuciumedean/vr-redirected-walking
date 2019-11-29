@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LiftCaller : MonoBehaviour
 {
@@ -8,6 +9,6 @@ public class LiftCaller : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Controller")) { return; }
-        SceneLoader.Instance.loadScene();
+        SceneManager.LoadScene(13);
     }
 }
