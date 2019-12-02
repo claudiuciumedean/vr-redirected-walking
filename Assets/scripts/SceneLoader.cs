@@ -87,7 +87,7 @@ public class SceneLoader : Singleton<SceneLoader>
 
     public bool isLastScene()
     {
-        return count === distractionScenes.Count - 1;
+        return count == distractionScenes.Count - 1;
     }
 
     public int getSceneId()
