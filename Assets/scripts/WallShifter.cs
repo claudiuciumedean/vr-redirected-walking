@@ -34,7 +34,7 @@ public class WallShifter : MonoBehaviour
 
     void shiftWall()
     {
-        if (playerPositionZ > -0.75) { return; }
+        if (playerPositionZ > -0.325) { return; }
 
         float overlappingGain = 0;
         float currentY = wall.transform.localPosition.y;
