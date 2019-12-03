@@ -7,6 +7,8 @@ using Valve.VR;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
+    public int sceneId;
+
     List<int> distractionScenes = new List<int> { 0, 1, 2, 3, 4, 5 };
     List<int> noDistractionScenes = new List<int> { 6, 7, 8, 9, 10, 11 };
     bool isRandomized = false;
@@ -16,9 +18,7 @@ public class SceneLoader : Singleton<SceneLoader>
     string questionAnswer;
     bool hasDistraction = false;
     bool hasStartedFirstTrial = false;
-    public Hashtable digitObjects = new Hashtable();
-    public int sceneId;
-
+    List<int> displayedObjects = new List<int>();
 
     private void Start()
     {
@@ -30,7 +30,6 @@ public class SceneLoader : Singleton<SceneLoader>
         }
 
         CSVManager.setFileName(playerId);
-        appendDigitObject();
     }
 
     public void loadLoadingScreen()
@@ -49,25 +48,17 @@ public class SceneLoader : Singleton<SceneLoader>
         else
         {
             hasDistraction = hasDistraction ? false : true;
-            // reset the digit object hashtable to false
-            // for the second part of the experiment
-            setDigitObject("pillow", false);
-            setDigitObject("dish", false);
-            setDigitObject("box", false);
-            setDigitObject("notebook", false);
+            displayedObjects = new List<int>();
         }
 
         SceneManager.LoadScene(this.hasDistraction ? distractionScenes[count] : noDistractionScenes[count]);
-        sceneId = distractionScenes[count];
+        sceneId = count;
         count++;
     }
 
     public void loadScene()
     {
-        Debug.Log(count + "count");
-        Debug.Log(hasDistraction + "hasDistraction");
-
-        if (count == distractionScenes.Count - 1) {
+        if (count == distractionScenes.Count) {
             SceneManager.LoadScene(12); //scene 12 is start scene
             return;
         }
@@ -81,13 +72,13 @@ public class SceneLoader : Singleton<SceneLoader>
             SceneManager.LoadScene(noDistractionScenes[count]);
         }
 
-        sceneId = distractionScenes[count];
+        sceneId = count;
         count++;
     }
 
     public bool isLastScene()
     {
-        return count == distractionScenes.Count - 1;
+        return count == distractionScenes.Count;
     }
 
     public int getSceneId()
@@ -103,25 +94,16 @@ public class SceneLoader : Singleton<SceneLoader>
     public void setOverlapLevel(string overlapLevel)
     {
         this.overlapLevel = overlapLevel;
-        Debug.Log(this.overlapLevel);
     }
 
-    public void appendDigitObject()
+    public void pushDisplayObject(int itm)
     {
-        digitObjects.Add("pillow", false);
-        digitObjects.Add("dish", false);
-        digitObjects.Add("box", false);
-        digitObjects.Add("notebook", false);
+        displayedObjects.Add(itm);
     }
 
-    public void setDigitObject(string key, bool isDisplayed) {
-        digitObjects[key] = isDisplayed;
-    }
-
-    public bool getDigitObject(string key)
+    public bool hasDisplayedObject(int itm)
     {
-        string value = digitObjects["pillow"].ToString();
-        return value == "True" ? true : false;
+       return displayedObjects.Contains(itm);
     }
 
     public void saveLog()
