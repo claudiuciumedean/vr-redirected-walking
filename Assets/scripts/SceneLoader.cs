@@ -7,19 +7,19 @@ using Valve.VR;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
-    public int sceneId;
+    public int playerId = 0;
 
     List<int> distractionScenes = new List<int> { 0, 1, 2, 3, 4, 5 };
     List<int> noDistractionScenes = new List<int> { 6, 7, 8, 9, 10, 11 };
     bool isRandomized = false;
     int count;
-    public int playerId = 0;
     string overlapLevel;
     string questionAnswer;
     bool hasDistraction = false;
     bool hasStartedFirstTrial = false;
     List<int> displayedObjects = new List<int>();
     System.Random randomNumber = new System.Random();
+    public int sceneId;
 
     private void Start()
     {
