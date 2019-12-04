@@ -19,6 +19,7 @@ public class SceneLoader : Singleton<SceneLoader>
     bool hasDistraction = false;
     bool hasStartedFirstTrial = false;
     List<int> displayedObjects = new List<int>();
+    System.Random randomNumber = new System.Random();
 
     private void Start()
     {
@@ -42,7 +43,7 @@ public class SceneLoader : Singleton<SceneLoader>
         count = 0;
         if (!hasStartedFirstTrial)
         {
-            hasDistraction = UnityEngine.Random.Range(0, 1) == 1 ? true : false;
+            hasDistraction = randomNumber.Next(1, 10) > 5 ? true : false;
             hasStartedFirstTrial = true;
         }
         else

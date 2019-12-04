@@ -9,7 +9,7 @@ public static class CSVManager
     private static string reportFileName = "Report";
     private static string fileFormat = ".csv";
     private static string reportSeparator = ",";
-    private static string[] reportHeaders = new string[4] { "ID", "Overlap level", "Distractor (yes/no)", "Possible (yes/no)" };
+    private static string[] reportHeaders = new string[4] { "ID", "Overlap level", "Distractor (yes/no)", "Impossible (yes/no)" };
 
     public static void setFileName(int id)
     {

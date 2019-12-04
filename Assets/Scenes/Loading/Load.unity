@@ -190,7 +190,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!43 &700245505
+--- !u!21 &581269559
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!43 &925155996
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +242,7 @@ Mesh:
     vertexCount: 8
     localAABB:
       m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.5337499, y: 0, z: 1.0087502}
+      m_Extent: {x: 1.8999997, y: 0, z: 1.5999999}
   m_Shapes:
     vertices: []
     shapes: []
@@ -287,7 +321,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 288
-    _typelessdata: b81eb13f0ad7233c0dd75bbfaea4b93d8115493e9f436a3f000000000000000000000000b81eb1bf0ad7233c0dd75bbfaea4b93d8115493e9f436a3f000000000000803f00000000b81eb1bf0ad7233c0dd75b3faea4b93d8115493e9f436a3f000000000000000000000000b81eb13f0ad7233c0dd75b3faea4b93d8115493e9f436a3f000000000000803f00000000eb51c43f0ad7233cba1e81bfaea4b93d8115493e9f436a3f00000000000000000000803feb51c4bf0ad7233cba1e81bfaea4b93d8115493e9f436a3f000000000000803f0000803feb51c4bf0ad7233cba1e813faea4b93d8115493e9f436a3f00000000000000000000803feb51c43f0ad7233cba1e813faea4b93d8115493e9f436a3f000000000000803f0000803f
+    _typelessdata: feffdf3f0ad7233c9999b9bfaea4b93d8115493e9f436a3f000000000000000000000000feffdfbf0ad7233c9999b9bfaea4b93d8115493e9f436a3f000000000000803f00000000feffdfbf0ad7233c9999b93faea4b93d8115493e9f436a3f000000000000000000000000feffdf3f0ad7233c9999b93faea4b93d8115493e9f436a3f000000000000803f000000003133f33f0ad7233cccccccbfaea4b93d8115493e9f436a3f00000000000000000000803f3133f3bf0ad7233cccccccbfaea4b93d8115493e9f436a3f000000000000803f0000803f3133f3bf0ad7233ccccccc3faea4b93d8115493e9f436a3f00000000000000000000803f3133f33f0ad7233ccccccc3faea4b93d8115493e9f436a3f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -342,7 +376,7 @@ Mesh:
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.5337499, y: 0, z: 1.0087502}
+    m_Extent: {x: 1.8999997, y: 0, z: 1.5999999}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
@@ -400,8 +434,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201647908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.27, y: 0.1, z: 0.7}
-  m_LocalScale: {x: 0.008909999, y: 0.025249999, z: 0.74377996}
+  m_LocalPosition: {x: -0.17741, y: 0.089422, z: 0.7}
+  m_LocalScale: {x: 0.0052334117, y: 0.0214625, z: 0.632213}
   m_Children:
   - {fileID: 1858459289}
   - {fileID: 1538453902}
@@ -416,7 +450,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201647908}
-  m_Text: Was the space impossible?
+  m_Text: Was the room size impossible?
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -605,11 +639,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1619400568}
+      objectReference: {fileID: 581269559}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 700245505}
+      objectReference: {fileID: 925155996}
     - target: {fileID: 11489174, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: size
       value: 0
@@ -766,8 +800,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538453901}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54, y: -6.456999, z: 0}
-  m_LocalScale: {x: 0.7523197, y: 0.7521135, z: 0.7520173}
+  m_LocalPosition: {x: 60.4, y: -5.4, z: 0}
+  m_LocalScale: {x: 1.280841, y: 0.8848394, z: 0.8847263}
   m_Children: []
   m_Father: {fileID: 1201647909}
   m_RootOrder: 1
@@ -864,40 +898,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!21 &1619400568
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1738951195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,8 +1036,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858459288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.3, y: -6.6, z: 0}
-  m_LocalScale: {x: 0.7523197, y: 0.7521135, z: 0.7520173}
+  m_LocalPosition: {x: 3.3, y: -5.3, z: 0}
+  m_LocalScale: {x: 1.280841, y: 0.8848394, z: 0.8847263}
   m_Children: []
   m_Father: {fileID: 1201647909}
   m_RootOrder: 0
