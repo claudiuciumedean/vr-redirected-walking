@@ -1,0 +1,14 @@
+ID,Overlap level,Distractor (yes/no),Impossible (yes/no)
+13,overlap-75,No,No
+13,overlap-15,No,No
+13,overlap-75,No,No
+13,overlap-30,No,No
+13,overlap-0,No,No
+13,overlap-45,No,Yes
+13,overlap-60,No,Yes
+13,overlap-75,Yes,Yes
+13,overlap-15,Yes,No
+13,overlap-30,Yes,No
+13,overlap-45,Yes,No
+13,overlap-0,Yes,No
+13,overlap-60,Yes,Yes

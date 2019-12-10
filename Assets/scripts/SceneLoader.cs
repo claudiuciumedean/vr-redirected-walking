@@ -40,10 +40,12 @@ public class SceneLoader : Singleton<SceneLoader>
 
     public void loadFirstScene()
     {
+        
         count = 0;
         if (!hasStartedFirstTrial)
         {
-            hasDistraction = randomNumber.Next(1, 10) > 5 ? true : false;
+            hasDistraction = true;
+                //randomNumber.Next(1, 10) > 5 ? true : false;
             hasStartedFirstTrial = true;
         }
         else
@@ -51,7 +53,6 @@ public class SceneLoader : Singleton<SceneLoader>
             hasDistraction = hasDistraction ? false : true;
             displayedObjects = new List<int>();
         }
-
         SceneManager.LoadScene(this.hasDistraction ? distractionScenes[count] : noDistractionScenes[count]);
         sceneId = count;
         count++;
